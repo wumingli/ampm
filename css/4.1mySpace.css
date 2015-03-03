@@ -1,0 +1,90 @@
+/* 
+*   @author: mistletoe
+*   @date: 2015-3-3
+*   @discription: f-功能 m-模块 u-原件 z-事件 s-皮肤
+*				  个人中心模块、我的钱包、我的订单
+*/
+
+body{background:#f2f2f3}
+
+/*用户信息*/
+.m-user-info{ background:#eb3341; height:245px; width:100%;}
+.m-user-info .m-wrap{ padding:35px 46px 0;}
+.m-user-info .m-wrap .m-user-face{ float:left}
+.m-user-info .m-wrap .m-user-face p{ font-size:2.6rem; text-align:center; line-height:2; color:#fff}
+.m-user-info .m-wrap .u-userface{ width:138px; height:138px; border-radius:10px; border:4px #fff solid;}
+
+.m-user-info .m-wrap .m-code{ float:left; text-align:center}
+.m-user-info .m-wrap .m-code p{ font-size:2.2rem; text-align:center; line-height:2; color:#fff}
+.m-user-info .m-wrap .u-code{ width:138px; height:138px; border-radius:0; border:4px #fff solid;}
+
+.m-user-info .m-wrap .m-user-other{ width:58%; float:right; position:relative}
+.m-user-info .m-wrap .m-user-other h3,.m-user-info .m-wrap .m-user-other p{ color:#fff;}
+.m-user-info .m-wrap .m-user-other p{ font-size:2.4rem}
+.m-user-info .m-wrap .m-user-other h3{ font-weight:normal; font-size:9rem;}
+.m-user-info .m-wrap .m-user-other .u-arr-right{ right:10px; color:#fff; font-size:4rem; position:absolute; top:65px; font-family:'宋体'}
+
+/*图片菜单*/
+.m-func-lst{ width:33.33%; height:190px; float:left; background:#fff}
+.m-func-lst .m-itm{height:190px;  border-right:1px #b2b2b2 solid; position:relative}
+.m-func-lst .u-icon-order,.m-func-lst .u-icon-cash,.m-func-lst .u-icon-code{ background-image:url(../img/user_info_icon.png); background-repeat:no-repeat; width:103px; margin:0 auto; top:20px; position:relative; padding-top:115px}
+
+.m-func-lst p{ text-align:center; font-size:2.6rem}
+.m-func-lst .u-icon-order{ background-position:left top;}
+.m-func-lst .u-icon-cash{ background-position:center top}
+.m-func-lst .u-icon-code{background-position:right top}
+
+/*用户功能列表*/
+.m-uc-lst{ background:#fff; margin-top:20px;}
+.m-uc-lst ul{}
+.m-uc-lst ul li{ height:69px; border-top:1px #b2b2b2 solid; vertical-align:middle; line-height:69px; font-size:3rem; padding:0 20px; color:#5d5d5d; position:relative}
+
+.m-uc-lst ul li a{ color:#5d5d5d;}
+.m-uc-lst ul li a.u-btn-more{ font-family:'宋体'; vertical-align:middle; width:14px; height:22px; background:url(../img/arr_icon_right2.png) center center no-repeat; position:absolute; right:20px; top:23px;}
+.m-uc-lst ul li:last-child{ border-bottom:1px #b2b2b2 solid}
+
+.m-uc-lst ul li span{ font-size:2.2rem; padding-right:30px; color:#eb3341}
+
+.m-uc-lst ul li .f1,.m-uc-lst ul li .f2,.m-uc-lst ul li .f3,.m-uc-lst ul li .f4,.m-uc-lst ul li .f5,.m-uc-lst ul li .f6{ background-image:url(../img/user_func_icon.gif); background-repeat:no-repeat; width:39px; height:45px; display:inline-block; vertical-align:middle; margin-right:10px;}
+.m-uc-lst ul li .f1{ background-position:left center}
+.m-uc-lst ul li .f2{ background-position:-39px center}
+.m-uc-lst ul li .f3{ background-position:-78px center}
+.m-uc-lst ul li .f4{ background-position:-117px center}
+.m-uc-lst ul li .f5{ background-position:-156px center}
+.m-uc-lst ul li .f6{ background-position:-195px center}
+
+/*用户中心版权信息*/
+.m-user-copyright{ position:fixed; bottom:0px; padding:10px; width:100%; background:#f2f0ef}
+.m-user-copyright p{ font-size:1.6rem; text-align:center; color:#707070}
+
+
+/* 
+*   @author: mistletoe
+*   @date: 2015-3-3
+*   @discription: f-功能 m-模块 u-原件 z-事件 s-皮肤
+*				  我的订单
+*/
+
+/*我的订单*/
+.m-order-tab{}
+.m-order-tab .m-title{ background:#fff; height:50px; border-bottom:1px #b3b3b3 solid}
+.m-order-tab .m-title .m-btn{ width:50%; display:inline-block; text-align:center; float:left;}
+.m-order-tab .m-title .m-btn a{ display:inline-block; height:48px; line-height:48px; border-bottom:2px #fff solid; width:120px; font-size:2.6rem; color:#5d5d5d}
+.m-order-tab .m-title .m-btn a.z-cur{ display:inline-block; height:48px; border-bottom:2px #eb3341 solid; color:#eb3341}
+.m-order-tab .m-context{ }
+.m-order-tab .m-context ul{}
+.m-order-tab .m-context ul li{ height:220px; border:1px #b2b2b2 solid; border-left:0; border-right:0; background:#fff; margin:10px 0; position:relative;}
+
+.m-order-tab .m-context ul li .m-l{ width:25%; display:inline-block; text-align:center; height:200px; vertical-align:middle}
+.m-order-tab .m-context ul li .m-c{ width:65%; display:inline-block; padding-top:26px; }
+.m-order-tab .m-context ul li .m-c h3{ font-size:2.6rem; font-weight:normal;}
+.m-order-tab .m-context ul li .m-c p{font-size:2.2rem; line-height:1.6 ; color:#5d5d5d}
+.m-order-tab .m-context ul li .m-c .u-arr-right{ position:absolute; right:20px; top:90px;}
+
+/*支付码*/
+.u-pay-h3{ font-size:2.8rem; line-height:50px; text-align:center; height:50px;}
+.m-pay-page{ width:522px; height:671px; background:url(../img/pay_code_bg.png) center bottom no-repeat; margin:100px auto}
+.m-pay-page .m-top-code{ padding-top:70px; padding-bottom:50px; text-align:center; margin-top:30px;}
+.m-pay-page .m-top-code img{ height:133px;}
+.m-pay-page .m-down-code{ padding-top:39px; text-align:center}
+.m-pay-page .m-down-code img{ width:238px; height:238px;}
