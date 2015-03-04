@@ -401,6 +401,14 @@ a, a:hover {
 }
 
 /*.m_menu_list dl{display: table;text-align: center;width: 100%;}*/
+.s_menu_dl{
+    max-height: 65px;
+    overflow: hidden;
+    -webkit-transition: all ease .7s;
+}
+.s_menu_dl.active{
+    max-height: 500px;
+}
 .s_menu_dl dt, .s_menu_dl dd {
     border-bottom: 1px solid #b2b2b2;
     display: table;
