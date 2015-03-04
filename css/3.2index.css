@@ -1,53 +1,7 @@
 @charset "UTF-8";
 
-.icon_gps,.icon_drop{background:url(../img/icons.png) no-repeat; }
-.icon_gps{background-position:-176px -349px;display: inline-block;width: 38px;height: 38px;vertical-align: middle;}
-.icon_drop{background-position: -246px -351px;display: inline-block;width: 32px;height: 32px;vertical-align: middle;}
-/*header*/
-.m_gps_store{height:74px;border-top: 1px solid #b3b3b3;border-bottom:1px solid #b3b3b3;position:relative;
-			text-align: center;font-family:Arial,"微软雅黑";background: #ffffff;font-size: 3.2rem;color:#5e5e5e; }
-.gps_store{line-height:74px;display: block;text-align: center;}
-.a_perceter{position: absolute; right:3%; top: 30%;width: 30px; height: 30px; display: block; }
-.a_perceter i{font-size:30px!important; line-height:30px;}
-/*list content*/
-/*list content   left*/
-.m_list_wp{background:#fff;border-top:1px solid #b3b3b3; position:relative; overflow:hidden}
-.m_menu_list{width: 31%;border-right: 1px solid #b2b2b2;float: left;text-align: center;color: #5b5b5b;font-family:Arial,"微软雅黑";margin-bottom:-3000px; padding-bottom:3000px;}
-/*.m_menu_list dl{display: table;text-align: center;width: 100%;}*/
-.m_menu_list dt,.m_menu_list dd{border-bottom: 1px solid #b2b2b2; display: table;vertical-align: middle;width: 100%;}
-.m_menu_list dt{height:64px; }
-.m_menu_list dt a,.m_menu_list dd a{color: #5b5b5b;vertical-align:middle;}
-.m_menu_list dt a{font-size: 3.4rem;vertical-align: middle;display: table-cell;}
-.m_menu_list dt a:hover{background: #ededed;}
-.m_menu_list dd a{font-size: 3rem;display: block;}
-.m_menu_list dd a span{font-size:2.2rem;display: block;}
-
-.s_menu_dl01 dd a{padding:22px 0;}
-.s_menu_dl02 dd{padding:10px 0;}
-.s_menu_dl02 dd a{height: 68px;}
 /*list content   right*/
 .m_show_wp{float: left;width: 68.5%;}
 .pic_list{text-align: center;}
 .pic_list a{border-radius: 8px;border:1px solid #b3b1b2;display: inline-block;width: 90%;margin-bottom: 15px;}
 .pic_list a img{display: block;width: 100%;}
-
-/*shop car fixed*/
-.shop_car{position: fixed;bottom: 0;left: 0;width: 100%;background: #e63640;font-family:Arial,"微软雅黑"; 
-			color: #fff;height: 80px;z-index: 999; padding-top:10px;}
-
-
-/* 
-*   @author: mistletoe
-*   @date: 2015-3-1
-*   @discription: f-功能 m-模块 u-原件 z-时间 s-皮肤
-*/
-.shop_car .m_shopCar{ margin-left:21px; width:100px; height:100px; position:absolute; bottom:0; border-radius:100%; background:url(../img/shopCar_carIcon.png) center center no-repeat #eb3341}
-
-.shop_car p{ margin-left:130px; font-size:2.2rem; line-height:1.5;}
-
-
-/*btn*/
-.btn-order{ width:170px; height:52px;  border-radius:5px; -webkit-border-radius:5px; background:#fff; font:3rem/52px 'Microsoft YaHei' ; color:#eb3341; border:none}
-
-
-

@@ -39,9 +39,8 @@
 
 /* 
 *   @author: mistletoe
-*   @date: 2015-3-3
+*   @date: 2015-3-2
 *   @discription: 增加图标字体、间距、字体颜色等公共属性
-*				  增加公共按钮、背景色
 */
 
 
@@ -78,18 +77,9 @@
 .u-btn-top{ position:fixed; right:20px; bottom:120px; width:80px; height:80px; z-index:9999; font-size:8rem; -webkit-opacity:.5; -moz-opacity:.5; opacity:.5}
 .u-btn-top i{ font-size:8rem}
 
-.u-btn-small{ padding:4px 20px; font-size:2.2rem; border-radius:10px; border:none; display:inline-block; color:#fff}
-
-/*背景色*/
-.s-red{ background:#eb3341}
-.s-blue{ background:#009ce5}
-.s-yellow{ background:#ffcd00}
-
-
-/*字体颜色*/
+/*颜色*/
 .ft-red01{color:#eb3341}
 .ft-red02{color:#ff0000!important}
-.ft-silver{ color:#999999}
 
 
 /*图标字体*/
@@ -109,6 +99,7 @@
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
+  margin-right: 6px;
 }
 .icon-user:before { content: "\e600"; }
 .icon-phone:before { content: "\e601"; }
@@ -127,8 +118,7 @@
 .icon-top:before { content: "\e60e"; }
 
 
-/*解决菜单被遮挡容器*/
-.m-container{ padding-bottom:80px; }
+
 
 /*遮罩层*/
 .m-opacity-layer{ position:fixed; left:0; top:0; right:0; bottom:0; background:#000; opacity:.4}
