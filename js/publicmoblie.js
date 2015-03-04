@@ -1,6 +1,14 @@
 //放公共js使用
 
 $(document).ready(function(){
+    //定位到当前位置
+    $('.get_position').on('click', function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                alert(0)
+            });
+        }
+    });
 	//3.2位置定位 弹出
 	$('.gps_store').click(function() {
 		$(this).siblings('.m_gps_hide').show();

@@ -490,3 +490,5 @@ a, a:hover {
 }
 
 
+.m-user-copyright{ position:fixed;left: 0; bottom:10px; padding:10px 0; width:100%;font-family:Arial,"微软雅黑";}
+.m-user-copyright p{ font-size:1.6rem; text-align:center; color:#707070;}
