@@ -17,19 +17,7 @@ $(document).ready(function(){
 	$('.m_gps_close').click(function() {
 		$(this).parent('.m_gps_hide').hide();
 	});
-	//3.2左侧菜单
-	$(".s_menu_dl dt").click(function() {
-		$(".s_menu_dl dt").removeClass('list_gray');
-		$(".s_menu_dl dt").attr('attribute', 'value');
-		if($(this).attr("state")=="open"){
-			$(this).siblings("dd").hide();
-			$(this).attr("state","close");
-		}else{
-			$(this).siblings("dd").show();
-			$(this).attr("state","open");
-			$(this).addClass('list_gray');
-		}
-	});
+	//3.2左侧菜单--------[已经去除::Yun.kou]
 	//top按钮效果
  	window.onscroll = function(){
             var article_showHeight = $(window).height();
