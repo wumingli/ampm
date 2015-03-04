@@ -5,7 +5,9 @@ $(document).ready(function(){
     $('.get_position').on('click', function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
-                alert(0)
+                alert(position)
+            }, function () {
+                console.log('error');
             });
         }
     });
