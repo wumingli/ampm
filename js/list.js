@@ -7,6 +7,10 @@ $(function(){
         promotionBtn = $('#promotion-btn'),
         toTop = $(".u-btn-top");
 
+    setTimeout(function(){
+        menu.css('transform', 'translate(0, 0)');
+        $('#promotion-list').css('transform', 'translate(0, 0)');
+    },10);
     changeAddBtn.on('click',function(){
         addPlane.show();
     });
@@ -19,17 +23,16 @@ $(function(){
         var self = $(this),
             dd = self.siblings("dd"),
             cur = menu.find(".on");
-		if(self.attr("state")=="open"){
-			dd.hide();
+        self.parent().toggleClass('active');
+		/*if(self.attr("state")=="open"){
 			self.attr("state","close");
 		}else{
-			dd.show();
             self.attr("state","open");
-            /*if(cur.length == 0 || cur[0] != dd.children()[0]) {
+            if(cur.length == 0 || cur[0] != dd.children()[0]) {
                 menu.find(".on").removeClass("on");
                 dd.children().first().addClass("on").trigger('click');
-            }*/
-		}
+            }
+		}*/
 	}).on('click', 'dd a', function(e) {
         var self = $(this),
             href = self.attr("href");
@@ -41,6 +44,8 @@ $(function(){
         if (cur[0] == this) {
             return;
         }
+        menu.find(".on").removeClass("on");
+        self.addClass("on")
         if (cur.parent()[0] != dd[0]) {
             menu.find("dt").removeClass('list_gray');
             dd.siblings("dt").addClass('list_gray');
@@ -85,7 +90,4 @@ $(function(){
 		$(this).parents('.m-modal').hide();
 		$('.m-opacity-layer').hide();
 	});
-});
-
-$(document).ready(function(){
 });
