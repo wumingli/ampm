@@ -372,6 +372,12 @@ a, a:hover {
     border-top: 1px solid #b2b2b2;
     overflow: hidden;
 }
+.m_list_wp article{
+    display:none;
+}
+.m_list_wp article.cur{
+    display:block;
+}
 
 .m_menu_list {
     width: 31%;
@@ -405,6 +411,9 @@ a, a:hover {
 .s_menu_dl dt {
     height: 64px;
 }
+.s_menu_dl dt.list_gray {
+    background:#eee;
+}
 
 .s_menu_dl dt a, .s_menu_dl dd a {
     color: #5b5b5b;
@@ -423,7 +432,8 @@ a, a:hover {
     padding: 22px 0;
 }
 
-.s_menu_dl dd a:hover {
+.s_menu_dl dd a:hover,
+.s_menu_dl dd a.on {
     color: #ec3341;
 }
 
