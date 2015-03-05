@@ -151,6 +151,7 @@ a, a:hover {
     height: auto;
     margin: 0 auto;
     position: relative;
+    background: #282828;
 }
 
 .opacity_layer {
@@ -159,8 +160,8 @@ a, a:hover {
     position: absolute;
     display: none;
     background: #000;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
     opacity: 0.8;
     z-index: 999;
 }
@@ -187,6 +188,12 @@ a, a:hover {
 
 .m-container {
     padding-bottom: 80px;
+    background: #ffffff;
+    -webkit-transition: all ease .7s;
+}
+
+.go-back{
+    transform: scale(.9,.9);
 }
 
 /*btn*/
@@ -480,9 +487,23 @@ a, a:hover {
     position: absolute;
     bottom: 0;
     border-radius: 100%;
-    background: url(../img/shopCar_carIcon.png) center center no-repeat #eb3341
+    background: url(../img/shopCar_carIcon.png) center center no-repeat #eb3341;
 }
 
+.shop_car .m_shopCar:after{
+    content: attr(data-num);
+    position: absolute;
+    top: -10px;
+    left: 65px;
+    height: 30px;
+    padding: 0 10px;
+    line-height: 30px;
+    border: 4px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    font-size: 20px;
+    color: #ffffff;
+    background: rgba(235, 51, 65, 0.8);
+}
 .shop_car p {
     margin-left: 130px;
     font-size: 2.2rem;

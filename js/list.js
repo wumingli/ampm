@@ -51,9 +51,9 @@ $(function(){
         }
         //临时部分，之后删除start
         var temp = {
-            "./getList?list=1":"../data/3.3.json",
-            "./getList?list=2":"../data/3.3.json",
-            "./getList?list=3":"../data/3.3.json"
+            "./getList?list=1":"../data/3.3-zao.json",
+            "./getList?list=2":"../data/3.3-wu.json",
+            "./getList?list=3":"../data/3.3-wan.json"
         };
         href = temp[href];
         //临时部分，之后删除end
@@ -106,7 +106,7 @@ $(function(){
                 }
             }
         });
-    })
+    }).trigger('click');
 	//top按钮效果
     $(window).on('scroll',function(e){
         var article_showHeight = window.screen.height,
