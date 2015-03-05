@@ -15,6 +15,17 @@ $(function() {
         $(this).addClass('a_has_sent');
         interval && clearInterval(interval);
         $(this).off('click');
+        $.ajax({
+            url: 'data/3.2.json',
+            dataType: 'json',
+            type: 'post',
+            data: {
+                phone: mobile
+            },
+            success: function (data) {
+                console.log(data);
+            }
+        });
         interval = setInterval(function() {
             $this.html((--count) + '秒后重发');
             if (count === 0) {
