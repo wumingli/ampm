@@ -1,7 +1,7 @@
 //弹出框
 $(function() {
     function startCount() {
-        var count = 10,
+        var count = 60,
             $this = $(this),
             interval = null,
             mobile = $('[data-mobile]').val();
@@ -16,7 +16,6 @@ $(function() {
         interval && clearInterval(interval);
         $(this).off('click');
         interval = setInterval(function() {
-            console.log(count)
             $this.html((--count) + '秒后重发');
             if (count === 0) {
                 $this.blur();
