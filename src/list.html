@@ -6,6 +6,65 @@
         </script>
         <script language="JavaScript" type="text/javascript" src="../js/viewport.js">
         </script>
+        <script language="JavaScript" type="text/javascript" src="../js/baiduTemplate.js">
+        </script>
+        <script id='promotionListTpl' type="text/template">
+            <%for(var i=0;i<data.length;i++){%>
+            <li>
+                <a href="<%=data[i].href%>">
+                    <img src="<%=data[i].img%>" alt="<%=data[i].title%>">
+                </a>
+            </li>
+            <%}%>
+        </script>
+        <script id='takeoutListTpl' type="text/template">
+                <div class="m-cue">
+                    <p>
+                        温馨提示：
+                        <br>
+                        <%-data.tip.join('<br>')%>
+                    </p>
+                </div>
+                <%for(var i=0;i<data.goods.length;i++){
+                    var good = data.goods[i];
+                %>
+                <dl class="m-categroy-lst">
+                    <dt>
+                        <i class="icon iconfont">&#<%=good.icon%>;</i>
+                        <%=good.title%>
+                    </dt>
+                    <%for(var j=0;j<good.list.length;j++){
+                        var dd = good.list[i];
+                    %>
+                    <dd data-id=<%=dd.id%> data-title=<%=dd.title%> data-price=<%=dd.price%> data-remaining=<%=dd.remaining%>>
+                        <div class="m-itm f-cb">
+                            <div class="m-control f-fr">
+                                <a href="#" class="u-icon-reduce"></a>
+                                <span>0</span>
+                                <a href="#" class="u-icon-add"></a>
+                            </div>
+                            <h3>
+                                <a href="#"><%=dd.title%></a>
+                            </h3>
+                            <p>
+                                <span class="ft-red01">¥<%=dd.price%>元/份</span>
+                                （剩余<%=dd.remaining%>份）
+                            </p>
+                        </div>
+                    </dd>
+                    <%}%>
+                </dl>
+                <%}%>
+                <div class="m-order-nd f-cb mb10">
+                    <input class="f-fr u-btn-order-submit" type="button" value="加入购物车" />
+                    <span>
+                        要
+                    </span>
+                    <input type="text" class="u-typeNum" />
+                    <span>
+                        份
+                    </span>
+                </div>
         </script>
         <meta name="apple-mobile-web-app-capable" content="yes">
         <!--nec-->
@@ -98,8 +157,8 @@
                 <section class="m_list_wp mt_15 clear">
                     <aside class="m_menu_list out">
                         <dl class="s_menu_dl">
-                            <dt class="list_gray">
-                                <a data-list="promotion-list" id="promotion-btn" href="javascript:;">
+                            <dt>
+                                <a data-list="promotion-list" id="promotion-btn" href="../data/3.2.json">
                                     <i class="icon iconfont">
                                         &#xe607;
                                     </i>
@@ -117,19 +176,19 @@
                                 </a>
                             </dt>
                             <dd data-list="takeout-list">
-                                <a href="javascript:;">
+                                <a href="./getList?list=1">
                                     早餐
                                     <span>
                                         (6:30-10:00)
                                     </span>
                                 </a>
-                                <a href="javascript:;">
+                                <a href="./getList?list=2">
                                     午餐
                                     <span>
                                         (10:00-14:00)
                                     </span>
                                 </a>
-                                <a href="javascript:;">
+                                <a href="./getList?list=3">
                                     晚餐
                                     <span>
                                         (15:00-21:00)

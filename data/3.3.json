@@ -1,14 +1,16 @@
 {
     "status": "ok",
     "data": {
-        "meat": [
-            {
+        "tip":["请依据个人情况选择2-3份菜品；可双拼、三拼"],
+        "goods":[{
+            "title": "荤",
+            "icon": "xe60b",
+            "list": [{
                 "id": "200010",
                 "title": "宫爆鸡丁",
                 "price": "8",
                 "remaining": "20"
-            },
-            {
+            },{
                 "id": "200011",
                 "title": "鱼香肉丝",
                 "price": "12",
@@ -18,16 +20,16 @@
                 "title": "宫爆鸡丁",
                 "price": "8",
                 "remaining": "20"
-            }
-        ],
-        "veget": [
-            {
+            }]
+        },{
+            "title": "素",
+            "icon": "xe60c",
+            "list": [{
                 "id": "200010",
                 "title": "酸辣土豆丝",
                 "price": "8",
                 "remaining": "20"
-            },
-            {
+            },{
                 "id": "200011",
                 "title": "鱼香茄子",
                 "price": "12",
@@ -37,16 +39,16 @@
                 "title": "清炒木耳",
                 "price": "8",
                 "remaining": "20"
-            }
-        ],
-        "food": [
-            {
+            }]
+        },{
+            "title": "主食",
+            "icon": "xe60d",
+            "list": [{
                 "id": "300010",
                 "title": "蛋炒饭",
                 "price": "5",
                 "remaining": "20"
-            },
-            {
+            },{
                 "id": "300011",
                 "title": "米饭",
                 "price": "2",
@@ -56,7 +58,7 @@
                 "title": "猪肉大葱水饺",
                 "price": "18",
                 "remaining": "20"
-            }
-        ]
+            }]
+        }]
     }
 }
