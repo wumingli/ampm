@@ -5,12 +5,17 @@ $(function(){
         menu = $(".m_menu_list"),
         section = $('section.m_list_wp'),
         promotionBtn = $('#promotion-btn'),
+        promotionArea = $('#promotion-list'),
+        promotionListTpl = baidu.template('promotionListTpl'),
+        taskoutArea = $('#takeout-list'),
+        takeoutListTpl = baidu.template('takeoutListTpl'),
         toTop = $(".u-btn-top");
 
     setTimeout(function(){
         menu.css('transform', 'translate(0, 0)');
-        $('#promotion-list').css('transform', 'translate(0, 0)');
+        promotionArea.css('transform', 'translate(0, 0)');
     },10);
+
     changeAddBtn.on('click',function(){
         addPlane.show();
     });
@@ -44,15 +49,34 @@ $(function(){
         if (cur[0] == this) {
             return;
         }
-        menu.find(".on").removeClass("on");
-        self.addClass("on")
-        if (cur.parent()[0] != dd[0]) {
-            menu.find("dt").removeClass('list_gray');
-            dd.siblings("dt").addClass('list_gray');
-            section.find("article.cur").removeClass('cur');
-            $("#" + target).addClass('cur');
-        }
-        //异步操作,请求href
+        //临时部分，之后删除start
+        var temp = {
+            "./getList?list=1":"../data/3.3-zao.json",
+            "./getList?list=2":"../data/3.3-wu.json",
+            "./getList?list=3":"../data/3.3-wan.json"
+        };
+        href = temp[href];
+        //临时部分，之后删除end
+        $.ajax({
+            url:href,
+            dataType:"json",
+            success:function(data){
+                if (data && data.status == 'ok') {
+                    taskoutArea.children().first().html(takeoutListTpl(data));
+                    menu.find(".on").removeClass("on");
+                    self.addClass("on")
+                    if (cur.parent()[0] != dd[0]) {
+                        menu.find("dt").removeClass('list_gray');
+                        dd.siblings("dt").addClass('list_gray');
+                        section.find("article.cur").removeClass('cur');
+                        $("#" + target).addClass('cur');
+                    }
+                } else {
+                    alert("数据有误，请重试");
+                    return false;
+                }
+            }
+        });
     });
     promotionBtn.on('click', function(e) {
         var self = $(this),
@@ -65,13 +89,24 @@ $(function(){
         if(menu.find("dt.list_gray a")[0] == this){
             return;
         }
-        menu.find(".on").removeClass('on');
-        menu.find("dt").removeClass('list_gray');
-        dt.addClass('list_gray');
-        section.find("article.cur").removeClass('cur');
-        $("#" + target).addClass('cur');
-        //异步操作,请求href
-    })
+        $.ajax({
+            url:href,
+            dataType:"json",
+            success:function(data){
+                if (data && data.status == 'ok') {
+                    promotionArea.find('.pic_list').html(promotionListTpl(data));
+                    menu.find(".on").removeClass('on');
+                    menu.find("dt").removeClass('list_gray');
+                    dt.addClass('list_gray');
+                    section.find("article.cur").removeClass('cur');
+                    $("#" + target).addClass('cur');
+                } else {
+                    alert("数据有误，请重试");
+                    return false;
+                }
+            }
+        });
+    }).trigger('click');
 	//top按钮效果
     $(window).on('scroll',function(e){
         var article_showHeight = window.screen.height,
@@ -89,5 +124,5 @@ $(function(){
 	$('#close_btn').click(function() {
 		$(this).parents('.m-modal').hide();
 		$('.m-opacity-layer').hide();
-	});
+	}); 
 });

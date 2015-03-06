@@ -380,7 +380,7 @@ a, a:hover {
     overflow: hidden;
 }
 .m_list_wp article{
-    /*display:none;*/
+    display:none;
 }
 .m_list_wp article.cur{
     display:block;
