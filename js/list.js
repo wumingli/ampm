@@ -197,7 +197,7 @@ $(function(){
             this.goods.forEach(function(v,i){
                 if(v.id.sort().join(',') == id){
                     if(data.isSet){
-                        if(v.riceNum == data.riceNum)){
+                        if(v.riceNum == data.riceNum){
                             index = i;
                         }
                     }else{
@@ -375,7 +375,7 @@ $('.m_shopCar').on('click', function () {
         return false;
     }
 
-    var $mask = '<div style="position: fixed; top: 0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.4); z-index: 990"></div>';
+    var $mask = '<div id="mask" style="position: fixed; top: 0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.4); z-index: 990"></div>';
     $mask = $($mask);
 
     function shopCarUp() {
@@ -387,7 +387,7 @@ $('.m_shopCar').on('click', function () {
 
     function shopCarDown() {
         $container.removeClass('go-back');
-        console.log($mask);
+
         $mask.remove();
         $this.addClass('off');
         $this.data('status', 'off');
