@@ -44,3 +44,14 @@ color: #e0e0e0;
 .input_code a.a_has_sent {background-color: #ccc; color: #fff;}
 p.error {font-size: 28px;color: #f30; padding-top: 10px;display: none;}
 p.error.show {display: block;}
+
+
+.inputin_wp{}
+.input_in,.input_select{background:#fff;width: 100%;border-bottom:1px solid #b2b2b2;padding-left: 35px;}
+.input_in input,.input_select input{border:none;}
+.input_in label{font-size:3rem; color: #5c5c5c;}
+.input_in label .icon{margin-right: 15px;}
+.input_select input{padding: 21px 1% 21px 6.5%;width: 86.5%;}
+.input_select  select{border:none;font-size: 3rem;padding:21px 5% 21px 0;font-family:Arial,"微软雅黑";color: #a8a8a8;}
+
+.inputin_wp .btn_finish {margin-top: 75px;}
