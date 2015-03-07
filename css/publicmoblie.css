@@ -151,7 +151,7 @@ a, a:hover {
     height: auto;
     margin: 0 auto;
     position: relative;
-    background: #282828;
+    /*background: #282828;*/
 }
 
 .opacity_layer {

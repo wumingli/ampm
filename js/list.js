@@ -125,4 +125,158 @@ $(function(){
 		$(this).parents('.m-modal').hide();
 		$('.m-opacity-layer').hide();
 	}); 
+    taskoutArea.on('click', '.u-icon-reduce', function(e){
+        e.preventDefault();
+        var self = $(this);
+        self.siblings('span').html(curSet.rm(self));
+    }).on('click', '.u-icon-add', function(e){
+        e.preventDefault();
+        var self = $(this);
+        self.siblings('span').html(curSet.add(self));
+    });
+    
+    var shoppingCart = {
+        goods: [],
+        num: 0,
+        setNum:0,
+        init: function(){},
+        add: function(data){},
+        rm: function(id){},
+        sum: function(){
+            return price;
+        }
+    };
+    var curSet = {
+        set: [],
+        num: 0,
+        get: function(num){
+            var set = this.set,
+                id = [],
+                title = [],
+                price = [],
+                sum = 0;
+            if(this.num < 2){
+                showError('请至少选两个做拼餐，菠菜哥谢谢你。');
+                return false;
+            }
+            $.each(set,function(i,v){
+                for (var i = 0,l = v.num; i<l; i++) {
+                    id.push(v.id);
+                    title.push(v.title);
+                    price.push(v.price);
+                }
+            });
+            $.each(price,function(i,v){
+                sum = sum + parseFloat(v,10);
+            });
+            return {
+                "id":"",
+                "title":[],
+                "unitPrice":sum.toFixed(2),
+                //"totalPrice":(sum*num).toFixed(2).toString(),
+                "num":num
+            };
+        },
+        add: function(node){
+            var dd,
+                id,
+                price,
+                title,
+                remaining,
+                notInSet
+                set = this.set,
+                index;
+            if (set.length == 0) {
+                dd = node.closest('dd');
+                id = dd.data('id');
+                price = dd.data('price');
+                title = dd.data('title');
+                remaining = dd.data('remaining');
+                set.push({
+                    'id': id,
+                    'title': title,
+                    'remaining': remaining,
+                    'price': price,
+                    'num': 1
+                });
+                return this.num = 1;
+            } else {
+                dd = node.closest('dd');
+                id = dd.data('id');
+                notInSet = this.set.every(function(v,i){
+                    if(v.id == id){
+                        index = i;
+                    }
+                    return v.id != id;
+                })
+                if (notInSet) {
+                    if(this.num < 3){
+                        price = dd.data('price');
+                        title = dd.data('title');
+                        remaining = dd.data('remaining');
+                        set.push({
+                            'id': id,
+                            'title': title,
+                            'remaining': remaining,
+                            'price': price,
+                            'num': 1
+                        });
+                        this.num = this.num + 1;
+                        return 1;
+                    }else{
+                        showError("最多只能三拼");
+                        return 0;
+                    }
+                } else {
+                    if(this.num < 3){
+                        set[index].num = set[index].num + 1;
+                        this.num = this.num + 1;
+                        return set[index].num;
+                    }else{
+                        showError("最多只能三拼");
+                        return set[index].num;
+                    }
+                }
+            }
+        },
+        rm: function(node){
+            var dd,
+                id,
+                notInSet
+                set = this.set,
+                index;
+            if (set.length == 0) {
+                showError("未添加拼餐");
+                return 0;
+            } else {
+                dd = node.closest('dd');
+                id = dd.data('id');
+                notInSet = this.set.every(function(v,i){
+                    if(v.id == id){
+                        index = i;
+                    }
+                    return v.id != id;
+                })
+                if (notInSet) {
+                    return 0;
+                } else if(this.num == 1){
+                    set = [];
+                    this.num = 0;
+                    return 0;
+                } else if(set[index].num == 1){
+                    set.splice(index,1);
+                    this.num = this.num - 1;
+                    return 0
+                } else {
+                    set[index].num = set[index].num - 1;
+                    this.num = this.num - 1;
+                    return set[index].num;
+                }
+            }
+        }
+    }
+    var render = {
+        
+    }
+
 });

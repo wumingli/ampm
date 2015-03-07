@@ -8,6 +8,8 @@
         </script>
         <script language="JavaScript" type="text/javascript" src="../js/baiduTemplate.js">
         </script>
+        <script language="JavaScript" type="text/javascript" src="../js/error.js">
+        </script>
         <script id='promotionListTpl' type="text/template">
             <%for(var i=0;i<data.length;i++){%>
             <li>
@@ -34,7 +36,7 @@
                         <%=good.title%>
                     </dt>
                     <%for(var j=0;j<good.list.length;j++){
-                        var dd = good.list[i];
+                        var dd = good.list[j];
                     %>
                     <dd data-id=<%=dd.id%> data-title=<%=dd.title%> data-price=<%=dd.price%> data-remaining=<%=dd.remaining%>>
                         <div class="m-itm f-cb">
@@ -74,6 +76,7 @@
         <link rel="stylesheet" type="text/css" href="../css/publicmoblie.css"
         />
         <link rel="stylesheet" type="text/css" href="../css/list.css" />
+        <link rel="stylesheet" type="text/css" href="../css/error.css" />
     </head>
     <body>
         <div class="layout">
