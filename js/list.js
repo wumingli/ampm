@@ -133,21 +133,97 @@ $(function(){
         e.preventDefault();
         var self = $(this);
         self.siblings('span').html(curSet.add(self));
+    }).on('click', '.u-btn-order-submit', function(e){
+        var input = $(this).parent().find('.u-typeNum'),
+            num = parseInt(input.val());
+        if (!(!!num && num > 0)) {
+            num = 1;
+            input.val(num);
+        }
+        shoppingCart.add(curSet.get(num));
     });
     
     var shoppingCart = {
         goods: [],
         num: 0,
-        setNum:0,
-        init: function(){},
-        add: function(data){},
-        rm: function(id){},
+        add: function(data){
+            var index = this.find(data);
+            if(index === false){
+                this.goods.push(data);
+                //TODO 添加记录
+            }else {
+                this.goods[index].num = this.goods[index].num + data.num;
+                //TODO 更新记录
+                this.refresh(index);
+            }
+        },
+        rm: function(index){
+            if(index<0||index>=this.goods.length){
+                console.warn('未在购物车里找到指定商品');
+            } else {
+                this.goods.splice(index,1);
+                //TODO 删除记录
+            }
+        },
+        plus: function(index){
+            if(index===false){
+                console.warn('未在购物车里找到指定商品');
+            } else {
+                this.goods[index].num = this.goods[index].num + 1;
+                //TODO 更新记录
+                this.refresh(index);
+            }
+        },
+        less: function(index){
+            if(index<0||index>=this.goods.length){
+                console.warn('未在购物车里找到指定商品');
+            } else {
+                this.goods[index].num = this.goods[index].num - 1;
+                if(this.goods[index].num <= 0){
+                    this.rm(index);
+                    return;
+                }
+                //TODO 更新记录
+                this.refresh(index);
+            }
+        },
+        refresh: function(index){
+            var good = this.goods[index];
+            good.totalPrice = (good.unitPrice*good.num).toFixed(2).toString();
+        },
+        find: function(data){
+            var index = false,
+                id = data.id.sort().join(',');
+            this.goods.forEach(function(v,i){
+                if(v.id.sort().join(',') == id){
+                    if(data.isSet){
+                        if(v.riceNum == data.riceNum)){
+                            index = i;
+                        }
+                    }else{
+                        index = i;
+                    }
+                }
+            });
+            return index;
+        },
         sum: function(){
+            var price = 0;
+            this.goods.forEach(function(v,i){
+                price = price + parseFloat(v.totalPrice,10);
+            });
             return price;
         }
     };
     var curSet = {
         set: [],
+        rice: {
+            'id': '',
+            'title': '米饭',
+            'remaining': 0,
+            'price': 2,
+            'num': 1
+        },
         num: 0,
         get: function(num){
             var set = this.set,
@@ -166,16 +242,30 @@ $(function(){
                     price.push(v.price);
                 }
             });
+            title.push(this.rice.title + (this.rice.num > 1 ? ('*' + this.rice.num) : ''));
+            price.push(this.rice.price * this.rice.num);
             $.each(price,function(i,v){
                 sum = sum + parseFloat(v,10);
             });
             return {
-                "id":"",
-                "title":[],
+                "id":id,
+                "title":title,
                 "unitPrice":sum.toFixed(2),
-                //"totalPrice":(sum*num).toFixed(2).toString(),
-                "num":num
+                "totalPrice":(sum*num).toFixed(2).toString(),
+                "num":num,
+                "riceNum":this.rice.num,
+                "isSet":true
             };
+        },
+        find: function(id){
+            var index = false;
+            this.set.every(function(v,i){
+                if(v.id == id){
+                    index = i;
+                }
+                return v.id != id;
+            });
+            return index;
         },
         add: function(node){
             var dd,
@@ -183,7 +273,6 @@ $(function(){
                 price,
                 title,
                 remaining,
-                notInSet
                 set = this.set,
                 index;
             if (set.length == 0) {
@@ -203,13 +292,8 @@ $(function(){
             } else {
                 dd = node.closest('dd');
                 id = dd.data('id');
-                notInSet = this.set.every(function(v,i){
-                    if(v.id == id){
-                        index = i;
-                    }
-                    return v.id != id;
-                })
-                if (notInSet) {
+                index = this.find(id);
+                if (index === false) {
                     if(this.num < 3){
                         price = dd.data('price');
                         title = dd.data('title');
@@ -242,7 +326,6 @@ $(function(){
         rm: function(node){
             var dd,
                 id,
-                notInSet
                 set = this.set,
                 index;
             if (set.length == 0) {
@@ -251,13 +334,8 @@ $(function(){
             } else {
                 dd = node.closest('dd');
                 id = dd.data('id');
-                notInSet = this.set.every(function(v,i){
-                    if(v.id == id){
-                        index = i;
-                    }
-                    return v.id != id;
-                })
-                if (notInSet) {
+                index = this.find(id);
+                if (index === false) {
                     return 0;
                 } else if(this.num == 1){
                     set = [];
@@ -266,7 +344,7 @@ $(function(){
                 } else if(set[index].num == 1){
                     set.splice(index,1);
                     this.num = this.num - 1;
-                    return 0
+                    return 0;
                 } else {
                     set[index].num = set[index].num - 1;
                     this.num = this.num - 1;
