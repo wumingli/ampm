@@ -29,4 +29,5 @@ padding: 10px 1%;line-height: 2.6rem;vertical-align: middle;margin-right: 10px;w
 .a_link_red{background: #ec3341;border-radius:2px;color: #fff;font-size:2.2rem;font-family: Arial,"微软雅黑";padding:7px 0;text-align: center; }
 .a_link_red:hover{color: #fff;}
 .add_cont_r .a_link_red{display:inline-block;width: 90%;}
+
 .add_cont_r i{color:#ec3341;font-size: 2rem;padding-top: 35px;display: block;}
