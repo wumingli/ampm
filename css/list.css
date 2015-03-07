@@ -58,7 +58,7 @@
 .m-goodslst dl.m-categroy-lst dd .m-itm .m-control .u-icon-reduce{ background-position:left center}
 
 
-.m-goodslst .m-order-nd{ margin-top:10px;/*ui里没有，先隐藏掉*/display:none;}
+.m-goodslst .m-order-nd{ margin-top:10px;}
 .m-goodslst .m-order-nd{ font-size:2rem; line-height:39px; vertical-align:middle; }
 .m-goodslst .m-order-nd input.u-typeNum{ border-radius:5px; border:1px #eb3341 solid; height:36px; line-height:36px; color:#666; font-size:2rem; vertical-align:middle;width:40px;}
 

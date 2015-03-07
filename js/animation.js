@@ -7,25 +7,28 @@
  */
 
 // 1.list页面列表飞入效果。
-(function ($) {
+/* 已经添加进list.js
+ * (function ($) {
     $(function () {
         $('.m_menu_list').css('transform', 'translate(0, 0)');
         $('.m_show_wp').css('transform', 'translate(0, 0)');
     });
 
-}(window.Zepto));
+}(window.Zepto));*/
 
 // 2.list下拉效果。
+/* 已经添加进list.js
 (function ($) {
     var $menuWarp = $('.s_menu_dl');
     $menuWarp.on('click', 'dt', function () {
         var $thisMenu = $(this).parent();
         $thisMenu.toggleClass('active');
     });
-}(window.Zepto));
+}(window.Zepto));*/
 
 //3.购物车效果
 
+$(function(){
 $('.m_shopCar').on('click', function () {
     var $this = $(this),
         $container = $('.m-container'),
@@ -63,6 +66,7 @@ $('.m_shopCar').on('click', function () {
         });
     }
 
+});
 });
 
 
