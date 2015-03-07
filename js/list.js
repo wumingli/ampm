@@ -358,3 +358,48 @@ $(function(){
     }
 
 });
+
+/**
+ * 购物车弹出效果
+ * 当购物车的商品为零的时候不弹出。
+ * 目前先加到 data-num 上了，以显示购物车商品数量
+ */
+
+$('.m_shopCar').on('click', function () {
+    var $this = $(this),
+        $container = $('.m-container'),
+        num = parseInt($this.data('num')),
+        status = $this.data('status');
+
+    if (num === 0) {
+        return false;
+    }
+
+    var $mask = '<div style="position: fixed; top: 0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.4); z-index: 990"></div>';
+    $mask = $($mask);
+
+    function shopCarUp() {
+        $container.addClass('go-back');
+        $mask.appendTo('body');
+        $this.addClass('on');
+        $this.data('status', 'on');
+    }
+
+    function shopCarDown() {
+        $container.removeClass('go-back');
+        console.log($mask);
+        $mask.remove();
+        $this.addClass('off');
+        $this.data('status', 'off');
+    }
+
+    if (status === 'on') {
+        shopCarDown();
+    } else {
+        shopCarUp();
+        $mask.one('click',function(){
+            shopCarDown();
+        });
+    }
+
+});

@@ -38,6 +38,7 @@ $('.m_shopCar').on('click', function () {
     if (num === 0) {
         return false;
     }
+
     var $mask = '<div style="position: fixed; top: 0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.4); z-index: 990"></div>';
     $mask = $($mask);
 
