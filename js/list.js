@@ -197,7 +197,7 @@ $(function(){
             this.goods.forEach(function(v,i){
                 if(v.id.sort().join(',') == id){
                     if(data.isSet){
-                        if(v.riceNum == data.riceNum)){
+                        if(v.riceNum == data.riceNum){
                             index = i;
                         }
                     }else{
