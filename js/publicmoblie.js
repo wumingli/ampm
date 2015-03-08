@@ -42,14 +42,18 @@ $(document).ready(function() {
 
     //获取地理位置
     $('.get_gps_yes').on('click', function() {
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
                 alert(position);
-            }, function () {
+            }, function() {
                 showError('获取地理位置信息失败');
             });
         } else {
             showError('不支持获取地理位置');
         }
+    });
+    //关闭获取地理位置
+    $('.get_gps_no').on('click', function() {
+        location.href = 'src/list.html';
     });
 });
