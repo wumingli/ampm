@@ -368,8 +368,7 @@ $(function(){
 $('.m_shopCar').on('click', function () {
     var $this = $(this),
         $container = $('.m-container'),
-        num = parseInt($this.data('num')),
-        status = $this.data('status');
+        num = parseInt($this.data('num'));
 
     if (num === 0) {
         return false;
@@ -381,19 +380,16 @@ $('.m_shopCar').on('click', function () {
     function shopCarUp() {
         $container.addClass('go-back');
         $mask.appendTo('body');
-        $this.addClass('on');
         $this.data('status', 'on');
     }
 
     function shopCarDown() {
         $container.removeClass('go-back');
-
-        $mask.remove();
-        $this.addClass('off');
+        $('#mask').remove();
         $this.data('status', 'off');
     }
 
-    if (status === 'on') {
+    if ($this.data('status') === 'on') {
         shopCarDown();
     } else {
         shopCarUp();
