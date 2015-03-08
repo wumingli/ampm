@@ -1,0 +1,13 @@
+/*欢迎首页*/
+body{background: #eb3341;}
+.wel_wp{background: #eb3341;width: 100%;height:auto;margin:0 auto;position: relative;overflow: hidden;}
+.wel_logo{background:url(../img/loo_215x216.png) no-repeat;width: 215px; height: 216px;margin:35% auto 0;}
+.icon_gprs_mx{display: block;background:url(../img/icon_gps_mx.png) no-repeat;width: 72px; height: 86px;background-size:100%;margin: 30% auto;}
+
+.get_gps{background:rgba(255,255,255,0.8);width: 100%;position: fixed;left:0; bottom: 0;z-index: 10;font-family: Arial,"微软雅黑";}
+.icon_close_02{background:url(../img/icon_close_02.png) no-repeat;width:4%; height:10%;background-size: 100%;
+			 display: block;position: absolute;right:5%;top: 8%;}
+.get_gps span{color: #736e72;font-size: 3rem;display: block;text-align: center;border-bottom:1px solid #d5afb3;padding: 20px 0;}
+.get_gps a{width: 49.5%;display: inline-block;text-align: center;padding:11% 0 11%;font-size: 3rem;color: #736e72;}
+.get_gps a:last-child{border-left:1px solid #d5afb3;}
+
