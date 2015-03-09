@@ -111,9 +111,9 @@
 } 
 .m-content input:hover::-webkit-input-placeholder { 
 	color: #e0e0e0; 
-	-webkit-transition: color.5s; 
-} 
+	-webkit-transition: color.5s;
 
+}
 
 .input_paswd{width: 70%;text-align: center;margin: 0 auto;}
 

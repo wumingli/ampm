@@ -43,8 +43,6 @@
 *   @discription: 增加图标字体、间距、字体颜色等公共属性
 */
 
-
-
 /*单位*/
 .p10{ padding:10px;}
 
@@ -55,6 +53,9 @@
 .mt15{ margin-top:15px;}
 .mt20{ margin-top:20px;}
 .mt30{ margin-top:30px;}
+.mt40{ margin-top:40px;}
+.mt50{ margin-top:50px;}
+.mt60{ margin-top:60px;}
 .mr5{ margin-right:5px;}
 .mr10{ margin-right:10px;}
 .mr15{ margin-right:15px;}
@@ -72,14 +73,26 @@
 .ml30{ margin-left:30px;}
 
 
+
 /*按钮*/
 .u-btn-order-submit{ border-radius:5px; background:#eb3341; padding:0px 10px; height:38px; line-height:1.9; font-size:2rem; text-align:center; color:#fff; border:none}
 .u-btn-top{ position:fixed; right:20px; bottom:120px; width:80px; height:80px; z-index:9999; font-size:8rem; -webkit-opacity:.5; -moz-opacity:.5; opacity:.5}
 .u-btn-top i{ font-size:8rem}
 
-/*颜色*/
+.u-btn-small{ padding:4px 20px; font-size:2.2rem; border-radius:10px; border:none; display:inline-block; color:#fff}
+
+.u-btn-charge{ width:200px; height:70px; font-size:3.5rem; line-height:1.4; border-radius:10px; font-family:'微软雅黑'; color:#fff; text-align:center; border:3px #b3b3b3 solid;}
+
+/*背景色*/
+.s-red{ background:#eb3341}
+.s-blue{ background:#009ce5}
+.s-yellow{ background:#ffcd00}
+
+
+/*字体颜色*/
 .ft-red01{color:#eb3341}
 .ft-red02{color:#ff0000!important}
+.ft-silver{ color:#999999}
 
 
 /*图标字体*/
@@ -99,7 +112,6 @@
   -webkit-font-smoothing: antialiased;
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
-  margin-right: 6px;
 }
 .icon-user:before { content: "\e600"; }
 .icon-phone:before { content: "\e601"; }
@@ -118,7 +130,3 @@
 .icon-top:before { content: "\e60e"; }
 
 
-
-
-/*遮罩层*/
-.m-opacity-layer{ position:fixed; left:0; top:0; right:0; bottom:0; background:#000; opacity:.4}
