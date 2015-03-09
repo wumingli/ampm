@@ -9,35 +9,47 @@ $(function(){
         promotionListTpl = baidu.template('promotionListTpl'),
         taskoutArea = $('#takeout-list'),
         takeoutListTpl = baidu.template('takeoutListTpl'),
-        toTop = $(".u-btn-top");
+        goodsArea = $('#goods-list'),
+        goodsListTpl = baidu.template('goodsListTpl'),
+        minatoArea = $('#minato-list'),
+        minatoListTpl = baidu.template('minatoListTpl'),
+        toTop = $(".u-btn-top"),
+        goodsDetailArea = $('.shop_detail'),
+        goodsDetailTpl = baidu.template('goodsDetailTpl'),
+        container = $('.m-container'),
+        shopCarArea = $('.shop_car'),
+        shopCarList = shopCarArea.find('.pro_count_list'),
+        shopCarListTpl = baidu.template('shopCarListTpl'),
+        mask = $('#mask'),
+        tpls = {
+            'takeout-list':takeoutListTpl,
+            'promotion-list':promotionListTpl,
+            'goodsListTpl':goodsListTpl,
+            'minatoListTpl':minatoListTpl
+        };
 
+    //入场动画
     setTimeout(function(){
         menu.css('transform', 'translate(0, 0)');
         promotionArea.css('transform', 'translate(0, 0)');
     },10);
 
+    //切换地址按钮
     changeAddBtn.on('click',function(){
         addPlane.show();
     });
-
+    
+    //关闭地址选择按钮
     addPlaneCloseBtn.on('click',function(){
         addPlane.hide();
     });
 
+    //右侧菜单事件
 	menu.on('click', 'dt', function(e) {
         var self = $(this),
             dd = self.siblings("dd"),
             cur = menu.find(".on");
         self.parent().toggleClass('active');
-		/*if(self.attr("state")=="open"){
-			self.attr("state","close");
-		}else{
-            self.attr("state","open");
-            if(cur.length == 0 || cur[0] != dd.children()[0]) {
-                menu.find(".on").removeClass("on");
-                dd.children().first().addClass("on").trigger('click');
-            }
-		}*/
 	}).on('click', 'dd a', function(e) {
         var self = $(this),
             href = self.attr("href");
@@ -61,15 +73,16 @@ $(function(){
             url:href,
             dataType:"json",
             success:function(data){
+                var area = $("#" + target);
                 if (data && data.status == 'ok') {
-                    taskoutArea.children().first().html(takeoutListTpl(data));
+                    area.children().first().html(tpls[target](data));
                     menu.find(".on").removeClass("on");
                     self.addClass("on")
                     if (cur.parent()[0] != dd[0]) {
                         menu.find("dt").removeClass('list_gray');
                         dd.siblings("dt").addClass('list_gray');
                         section.find("article.cur").removeClass('cur');
-                        $("#" + target).addClass('cur');
+                        area.addClass('cur');
                     }
                 } else {
                     alert("数据有误，请重试");
@@ -78,6 +91,7 @@ $(function(){
             }
         });
     });
+    //促销按钮单独处理
     promotionBtn.on('click', function(e) {
         var self = $(this),
             href = self.attr("href");
@@ -117,14 +131,11 @@ $(function(){
             toTop.hide();
         }
     });
+    //toTop按钮
 	toTop.click(function(){
         window.scrollTo(0,0);
     });
-	//3.10支付订单关闭
-	$('#close_btn').click(function() {
-		$(this).parents('.m-modal').hide();
-		$('.m-opacity-layer').hide();
-	}); 
+    //拼餐事件
     taskoutArea.on('click', '.u-icon-reduce', function(e){
         e.preventDefault();
         var self = $(this);
@@ -142,6 +153,126 @@ $(function(){
         }
         shoppingCart.add(curSet.get(num));
     });
+    //商品列表事件
+    goodsArea.on('click', '.detail', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var li = $(this).closest('li')
+        var data = {
+            imgs:li.data("imgs"),
+            img:li.data("img"),
+            title:li.data("title"),
+            id:li.data("id"),
+            price:li.data("price"),
+            num:li.data("num")
+        };
+        containerUp();
+        mask.one('click',containerDown);
+        goodsDetailArea.html(goodsDetailTpl(data)).show();
+        goodsDetailArea.data("imgs",data["imgs"]);
+        goodsDetailArea.data("img",data["img"]);
+        goodsDetailArea.data("title",data["title"]);
+        goodsDetailArea.data("id",data["id"]);
+        goodsDetailArea.data("price",data["price"]);
+        goodsDetailArea.data("num",data["num"]);
+    }).on('click', ".u-icon-add", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var li = $(this).closest('li');
+        var num = parseInt(li.find('.number').html(),10);
+        num = num >= 99 ? 99 : num + 1;
+        li.data('num',num);
+        li.find('.number').html(num);
+    }).on('click', '.u-icon-reduce', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var li = $(this).closest('li');
+        var num = parseInt(li.find('.number').html(),10);
+        num = num <= 0 ? 0 : num - 1;
+        li.data('num',num);
+        li.find('.number').html(num);
+    });
+    //商品详情事件
+    goodsDetailArea.on('click', '.queding', function(e){
+        goodsDetailArea.hide();
+        containerDown();
+    }).on('click', ".u-icon-add", function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var p = $(this).parent();
+        var num = parseInt(p.find('.number').html(),10);
+        num = num <= 0 ? 0 : num - 1;
+        goodsDetailArea.data('num',num);
+        li.find('.number').html(num);
+    }).on('click', '.u-icon-reduce', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var p = $(this).parent();
+        var num = parseInt(p.find('.number').html(),10);
+        num = num <= 0 ? 0 : num - 1;
+        goodsDetailArea.data('num',num);
+        li.find('.number').html(num);
+    }).on('click', '.btnRed', function(e){
+        var unitPrice = parseFloat(goodsDetailArea.data('price'),10).toFixed(2),
+            num = parseInt(goodsDetailArea.data('num'),10),
+            totalPrice = (unitPrice*num).toFixed(2).toString();
+        shoppingCart.add({
+            "id":[goodsDetailArea.data('id')],
+            "title":[goodsDetailArea.data('title')],
+            "unitPrice":unitPrice,
+            "totalPrice":totalPrice,
+            "num":num
+        })
+    });
+    //购物车事件
+    shopCarArea.on('click', '.m_shopCar', function () {
+        var $this = $(this),
+            num = parseInt($this.data('num'));
+        if (num === 0) {
+            return false;
+        }
+        if ($this.data('status') === 'on') {
+            containerDown();
+            $this.data('status','off');
+        } else {
+            containerUp();
+            $this.data('status','on');
+            mask.one('click',containerDown);
+        }
+    }).on('click', '.icon_sub', function(){
+        var self = $(this);
+        var li = self.closest('li');
+        var index = li.index();
+        var goodData = shoppingCart.goods[index];
+        goodData.num = goodData.num - 1;
+        if(goodData.num == 0){
+            shoppingCart.rm(index);
+            shopCarArea.find('.m_shopCar').data('num') = shoppingCart.goods.length;
+            if(!shoppingCart.goods.length){
+                shopCarArea.find('.m_shopCar').trigger('click');
+            }
+            return;
+        }
+        li.find('.pro_count_text').html(goodData.num);
+    }).on('click', '.icon_add', function(){
+        var self = $(this);
+        var li = self.closest('li');
+        var index = li.index();
+        var goodData = shoppingCart.goods[index];
+        goodData.num = goodData.num + 1;
+        li.find('.pro_count_text').html(goodData.num);
+    });
+
+    function containerUp() {
+        mask.show();
+        container.addClass('go-back');
+    }
+
+    function containerDown() {
+        container.removeClass('go-back');
+        mask.hide();
+        mask.off('click');
+    }
     
     var shoppingCart = {
         goods: [],
@@ -150,10 +281,9 @@ $(function(){
             var index = this.find(data);
             if(index === false){
                 this.goods.push(data);
-                //TODO 添加记录
+                shopCarList.append(shopCarListTpl(data));
             }else {
                 this.goods[index].num = this.goods[index].num + data.num;
-                //TODO 更新记录
                 this.refresh(index);
             }
         },
@@ -162,7 +292,7 @@ $(function(){
                 console.warn('未在购物车里找到指定商品');
             } else {
                 this.goods.splice(index,1);
-                //TODO 删除记录
+                shopCarList.children().eq(index).remove();
             }
         },
         plus: function(index){
@@ -170,7 +300,6 @@ $(function(){
                 console.warn('未在购物车里找到指定商品');
             } else {
                 this.goods[index].num = this.goods[index].num + 1;
-                //TODO 更新记录
                 this.refresh(index);
             }
         },
@@ -183,13 +312,14 @@ $(function(){
                     this.rm(index);
                     return;
                 }
-                //TODO 更新记录
                 this.refresh(index);
             }
         },
         refresh: function(index){
             var good = this.goods[index];
             good.totalPrice = (good.unitPrice*good.num).toFixed(2).toString();
+            shopCarList.children().eq(index).find('em').html('￥' + good.totalPrice);
+            shopCarList.children().eq(index).find('.pro_count_text').html(good.num);
         },
         find: function(data){
             var index = false,
@@ -353,49 +483,5 @@ $(function(){
             }
         }
     }
-    var render = {
-        
-    }
-
 });
 
-/**
- * 购物车弹出效果
- * 当购物车的商品为零的时候不弹出。
- * 目前先加到 data-num 上了，以显示购物车商品数量
- */
-
-$('.m_shopCar').on('click', function () {
-    var $this = $(this),
-        $container = $('.m-container'),
-        num = parseInt($this.data('num'));
-
-    if (num === 0) {
-        return false;
-    }
-
-    var $mask = '<div id="mask" style="position: fixed; top: 0; left: 0; width:100%; height: 100%; background: rgba(0,0,0,.4); z-index: 990"></div>';
-    $mask = $($mask);
-
-    function shopCarUp() {
-        $container.addClass('go-back');
-        $mask.appendTo('body');
-        $this.data('status', 'on');
-    }
-
-    function shopCarDown() {
-        $container.removeClass('go-back');
-        $('#mask').remove();
-        $this.data('status', 'off');
-    }
-
-    if ($this.data('status') === 'on') {
-        shopCarDown();
-    } else {
-        shopCarUp();
-        $mask.one('click',function(){
-            shopCarDown();
-        });
-    }
-
-});
