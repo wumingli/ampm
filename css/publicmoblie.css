@@ -242,12 +242,11 @@ a, a:hover {
 /*hide div*/
 .m_gps_close {
     position: absolute;
-    z-index: 10001;
     font-family: "微软雅黑";
     font-size: 3.2rem;
     width: 45px;
     height: 45px;
-    display: block;
+    display: none;
     top: 2%;
     left: 2%;
     color: #333;
@@ -259,7 +258,7 @@ a, a:hover {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 900;
     border-bottom: 5px solid #ec3343;
 }
 
