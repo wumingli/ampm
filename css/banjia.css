@@ -113,3 +113,10 @@
 	color: #e0e0e0; 
 	-webkit-transition: color.5s; 
 } 
+
+
+.input_paswd{width: 70%;text-align: center;margin: 0 auto;}
+
+.input_paswd span{display:inline-block; width:35px; height:35px;border-radius: 4px; border: 1px solid #e0e0e0;margin: 0 5px;font-size: 2.2rem;text-align: center;}
+.tk_tips{color: #353535;font-size: 2.2rem;padding-top:20px;text-align: center;}
+.tk_tips a{color:#fb3939;}
