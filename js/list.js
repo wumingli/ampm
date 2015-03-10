@@ -21,11 +21,18 @@ $(function(){
         shopCarList = shopCarArea.find('.pro_count_list'),
         shopCarListTpl = baidu.template('shopCarListTpl'),
         mask = $('#mask'),
+        layoutElm = $('.layout'),
         tpls = {
             'takeout-list':takeoutListTpl,
             'promotion-list':promotionListTpl,
-            'goodsListTpl':goodsListTpl,
-            'minatoListTpl':minatoListTpl
+            'goods-list':goodsListTpl,
+            'minato-list':minatoListTpl
+        },
+        loadMoreUrl = {
+            'takeout-list':'xxx.xxx.xxx',
+            'promotion-list':'xxx.xxx.xxx',
+            'goods-list':'xxx.xxx.xxx',
+            'minato-list':'xxx.xxx.xxx'
         };
 
     //入场动画
@@ -121,14 +128,18 @@ $(function(){
             }
         });
     }).trigger('click');
-	//top按钮效果
+	//top按钮效果 && 加载列表当前列表下一页脚本
     $(window).on('scroll',function(e){
         var article_showHeight = window.screen.height,
-            t = document.documentElement.scrollTop || document.body.scrollTop;   
-        if( t >= article_showHeight) {
+            t = document.documentElement.scrollTop || document.body.scrollTop,
+            maxHeight = layoutElm.height() - 20;
+        if(t >= article_showHeight){
             toTop.show();
         }else{
             toTop.hide();
+        }
+        if(t + article_showHeight > maxHeight){
+            loadMore();
         }
     });
     //toTop按钮
@@ -272,6 +283,29 @@ $(function(){
         container.removeClass('go-back');
         mask.hide();
         mask.off('click');
+    }
+
+    function loadMore(){
+        var article = section.find("article.cur"),
+            id = article.attr('id'),
+            lock = parseInt(article.data('lock'),10),
+            tpl,
+            url;
+        if(!lock){
+            article.data('lock',1);
+            tpl = tpls[id];
+            $.ajax({
+                url:loadMoreUrl[id],
+                success:function(data){
+                    article.data('lock',1);
+                    if(id == 'takeout-list'){
+                        article.find('m-order-nd').before($(tpl(data)).find('dl'));
+                    }else{
+                        article.children().first().append(tpl(data))
+                    }
+                }
+            });
+        }
     }
     
     var shoppingCart = {

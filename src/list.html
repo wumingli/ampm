@@ -68,6 +68,38 @@
                 </span>
             </div>
         </script>
+        <script id='takeoutListTplForMore' type="text/template">
+            <%for(var i=0;i<data.goods.length;i++){
+                var good = data.goods[i];
+            %>
+            <dl class="m-categroy-lst">
+                <dt>
+                    <i class="icon iconfont">&#<%=good.icon%>;</i>
+                    <%=good.title%>
+                </dt>
+                <%for(var j=0;j<good.list.length;j++){
+                    var dd = good.list[j];
+                %>
+                <dd data-id=<%=dd.id%> data-title=<%=dd.title%> data-price=<%=dd.price%> data-remaining=<%=dd.remaining%>>
+                    <div class="m-itm f-cb">
+                        <div class="m-control f-fr">
+                            <a href="#" class="u-icon-reduce"></a>
+                            <span>0</span>
+                            <a href="#" class="u-icon-add"></a>
+                        </div>
+                        <h3>
+                            <a href="#"><%=dd.title%></a>
+                        </h3>
+                        <p>
+                            <span class="ft-red01">¥<%=dd.price%>元/份</span>
+                            （剩余<%=dd.remaining%>份）
+                        </p>
+                    </div>
+                </dd>
+                <%}%>
+            </dl>
+            <%}%>
+        </script>
         <script id='goodsListTpl' type="text/template">
             <%for(var i=0;i<data.goods.length;i++){
                 var good = data.goods[i];
